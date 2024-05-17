@@ -39,13 +39,15 @@ app.get("/api/:date", function (req, res) {
 });
 
 // Modified to handle empty date parameter
-app.get("/api", (req, res) => {
+// Option 2: Using app.all
+app.all("/api", (req, res) => {
   const currentDate = new Date();
   res.json({
     unix: currentDate.getTime(),
     utc: currentDate.toUTCString(),
   });
 });
+
 
 // Listen on port set in environment variable or default to 3000
 var listener = app.listen(process.env.PORT || 3000, function () {
